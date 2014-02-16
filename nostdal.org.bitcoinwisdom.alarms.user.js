@@ -8,7 +8,8 @@
 
 var main = function(){
 
-  var beep = (function () {
+
+  var beep = (function (){
     var ctx = new(window.AudioContext ||
                   window.webkitAudioContext ||
                   window.mozAudioContext ||
@@ -27,20 +28,17 @@ var main = function(){
       osc.connect(ctx.destination);
       osc.start(0);
 
-      setTimeout(function (){
-        osc.stop(0);
-      }, duration);
+      setTimeout(function(){ osc.stop(0); }, duration);
     };
   })();
 
 
 
-  (function($) {
-    $.qs = (function(a) {
+  (function($){
+    $.qs = (function(a){
       if (a == "") return {};
       var b = {};
-      for (var i = 0; i < a.length; ++i)
-      {
+      for (var i = 0; i < a.length; ++i){
         var p=a[i].split('=');
         if (p.length != 2) continue;
         b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
@@ -48,11 +46,6 @@ var main = function(){
       return b;
     })(window.location.search.substr(1).split('&'));
   })(jQuery);
-
-
-  function addAlarmsToURL(){
-    window.history.replaceState(null, '', '?low_alarm=' + $("#low_alarm").val() + "&high_alarm=" + $("#high_alarm").val());
-  }
 
 
 
@@ -66,12 +59,11 @@ var main = function(){
 
 
 
-
   var low_alarm = window.setInterval(function(){
     if(parseFloat($("#price").html()) <= parseFloat($("#low_alarm").val())){
       beep(500, 440, 0);
     }
-    addAlarmsToURL();
+    window.history.replaceState(null, '', '?low_alarm=' + $("#low_alarm").val() + "&high_alarm=" + $("#high_alarm").val());
   },
                                      1000);
 
@@ -83,6 +75,7 @@ var main = function(){
     }
   },
                                       1000);
+
 
 };
 
