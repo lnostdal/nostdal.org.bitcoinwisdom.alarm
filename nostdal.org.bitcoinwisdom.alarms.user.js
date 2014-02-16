@@ -1,13 +1,19 @@
 // ==UserScript==
 // @name Bitcoinwisdom price alarms
 // @match http://bitcoinwisdom.com/*
+// @updateURL https://github.com/lnostdal/nostdal.org.bitcoinwisdom.alarm/raw/master/nostdal.org.bitcoinwisdom.alarms.user.js
+// @version 1.0
 // ==/UserScript==
 
 
 var main = function(){
 
   var beep = (function () {
-    var ctx = new(window.audioContext || window.webkitAudioContext);
+    var ctx = new(window.AudioContext ||
+                  window.webkitAudioContext ||
+                  window.mozAudioContext ||
+                  window.oAudioContext ||
+                  window.msAudioContext);
     return function (duration, freq, type){
       duration = +duration;
 
@@ -19,10 +25,10 @@ var main = function(){
       osc.frequency.value = freq;
 
       osc.connect(ctx.destination);
-      osc.noteOn(0);
+      osc.start(0);
 
       setTimeout(function (){
-        osc.noteOff(0);
+        osc.stop(0);
       }, duration);
     };
   })();

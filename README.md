@@ -1,7 +1,7 @@
 Bitcoinwisdom.com userscript / greasemonkey alarm
 =================================================
 
-..only tested on Chrome.
+..tested on Chrome and Firefox.
 
 ### How to install:
 
@@ -14,4 +14,3 @@ Bitcoinwisdom.com userscript / greasemonkey alarm
 
 * Navigate to http://bitcoinwisdom.com/
 * The script will add two text input fields to the page; "high alarm" and "low alarm" .. just type in some numbers....you get the idea.
-
