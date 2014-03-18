@@ -2,7 +2,7 @@
 // @name Bitcoinwisdom price alarms
 // @match https://bitcoinwisdom.com/markets/*
 // @updateURL https://github.com/lnostdal/nostdal.org.bitcoinwisdom.alarm/raw/master/nostdal.org.bitcoinwisdom.alarms.user.js
-// @version 1.2
+// @version 1.3
 // ==/UserScript==
 
 
