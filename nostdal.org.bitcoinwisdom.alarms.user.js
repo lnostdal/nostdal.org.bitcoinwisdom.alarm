@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name Bitcoinwisdom price alarms
-// @match http://bitcoinwisdom.com/*
+// @match https://bitcoinwisdom.com/markets/*
 // @updateURL https://github.com/lnostdal/nostdal.org.bitcoinwisdom.alarm/raw/master/nostdal.org.bitcoinwisdom.alarms.user.js
-// @version 1.0
+// @version 1.2
 // ==/UserScript==
 
 
-var main = function(){
 
+var main = function(){
 
   var beep = (function (){
     var ctx = new(window.AudioContext ||
@@ -36,11 +36,11 @@ var main = function(){
 
   (function($){
     $.qs = (function(a){
-      if (a == "") return {};
+      if(a == "") return {};
       var b = {};
-      for (var i = 0; i < a.length; ++i){
+      for(var i = 0; i < a.length; ++i){
         var p=a[i].split('=');
-        if (p.length != 2) continue;
+        if(p.length != 2) continue;
         b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
       }
       return b;
@@ -54,8 +54,8 @@ var main = function(){
 
 
   // On page (re)load fetch values from URL.
-  $("#low_alarm").val($.qs["low_alarm"]);
-  $("#high_alarm").val($.qs["high_alarm"]);
+  //$("#low_alarm").val($.qs["low_alarm"]);
+  //$("#high_alarm").val($.qs["high_alarm"]);
 
 
 
@@ -63,7 +63,6 @@ var main = function(){
     if(parseFloat($("#price").html()) <= parseFloat($("#low_alarm").val())){
       beep(500, 440, 0);
     }
-    window.history.replaceState(null, '', '?low_alarm=' + $("#low_alarm").val() + "&high_alarm=" + $("#high_alarm").val());
   },
                                      1000);
 
@@ -75,7 +74,6 @@ var main = function(){
     }
   },
                                       1000);
-
 
 };
 
